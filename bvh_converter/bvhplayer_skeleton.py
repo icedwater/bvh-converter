@@ -371,7 +371,7 @@ class ReadBVH(BvhReader):
 def process_bvhnode(node, parentname='hips'):
     name = node.name
     if (name == "End Site") or (name == "end site"):
-        name = parentname + "End"
+        return None
     
     b1 = Joint(name)
     b1.channels = node.channels
@@ -391,7 +391,8 @@ def process_bvhnode(node, parentname='hips'):
 
     for child in node.children:
         b2 = process_bvhnode(child, name)  # Creates a child joint "b2"
-        b1.addchild(b2)
+        if b2 is not None:
+            b1.addchild(b2)
     return b1
 
 
