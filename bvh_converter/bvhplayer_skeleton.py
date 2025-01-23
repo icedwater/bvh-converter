@@ -180,6 +180,9 @@ class Skeleton:
         str1 = str1 + self.root.__str__()
         return str1
 
+    def __len__(self):
+        return len(self.joint_dfs(self.root))
+
     @staticmethod
     def joint_dfs(root):
         """
